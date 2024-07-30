@@ -1,0 +1,461 @@
+[gd_scene load_steps=37 format=3 uid="uid://cp22wb0rsg6l6"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_1l38x"]
+[ext_resource type="Texture2D" uid="uid://dv6cn8vi75cd6" path="res://images/store-name.png" id="2_720xv"]
+[ext_resource type="Texture2D" uid="uid://bikli521ihqyn" path="res://images/reset-cauldron.png" id="3_hcxq6"]
+[ext_resource type="Texture2D" uid="uid://3uhkpva41f2c" path="res://images/submit.png" id="4_k1h3m"]
+[ext_resource type="Script" path="res://scripts/Sell.gd" id="5_tvdei"]
+[ext_resource type="Script" path="res://scripts/Cauldron.gd" id="6_o7k6d"]
+[ext_resource type="Texture2D" uid="uid://b5q36cynqqkg8" path="res://images/cauldron-color.png" id="7_3ve2d"]
+[ext_resource type="Texture2D" uid="uid://mbqeayqt0rst" path="res://images/cauldron.png" id="8_jgpot"]
+[ext_resource type="Texture2D" uid="uid://dci5fj46va575" path="res://images/empty-flask2.png" id="9_1oygl"]
+[ext_resource type="Script" path="res://scripts/Flasks.gd" id="10_ye7st"]
+[ext_resource type="Script" path="res://scripts/Gold.gd" id="11_g7n71"]
+[ext_resource type="Texture2D" uid="uid://dbr4joatog14h" path="res://images/gold.png" id="12_fd20f"]
+[ext_resource type="Texture2D" uid="uid://dykfio534s4p1" path="res://images/lore-scroll.png" id="13_f0jnw"]
+[ext_resource type="Texture2D" uid="uid://baix3p1k0vxvm" path="res://images/alchemy-book-open.png" id="14_vleq3"]
+[ext_resource type="Texture2D" uid="uid://cteiy16ws1x7h" path="res://images/empty-flask.png" id="15_ct6p5"]
+[ext_resource type="Script" path="res://scripts/White.gd" id="16_jvudm"]
+[ext_resource type="Texture2D" uid="uid://n1fqp35dx60k" path="res://images/fluid-flask.png" id="17_8hkgk"]
+[ext_resource type="Texture2D" uid="uid://dqa8egtfvhmaa" path="res://images/alchemy-book.png" id="18_6mcjd"]
+[ext_resource type="Texture2D" uid="uid://dl8m8p7n8qbay" path="res://images/lock.png" id="19_2ddop"]
+[ext_resource type="Script" path="res://scripts/Lock.gd" id="20_snsi5"]
+[ext_resource type="Script" path="res://scripts/Start.gd" id="21_vr41h"]
+[ext_resource type="Texture2D" uid="uid://cr0bnn7nfjvtr" path="res://images/logo.png" id="22_0aadh"]
+[ext_resource type="Script" path="res://scripts/Logo.gd" id="23_re6bu"]
+[ext_resource type="Script" path="res://scripts/Continue.gd" id="24_8ykun"]
+[ext_resource type="AudioStream" uid="uid://57torlaoxscx" path="res://sounds/background.mp3" id="25_gchpg"]
+[ext_resource type="Script" path="res://scripts/BackgroundMusic.gd" id="26_nftbw"]
+[ext_resource type="Texture2D" uid="uid://cn5ylad4e2jd5" path="res://images/speaker.png" id="27_2u5ai"]
+[ext_resource type="Script" path="res://scripts/Sound.gd" id="28_0w47m"]
+[ext_resource type="Texture2D" uid="uid://d3qi43yigdra8" path="res://images/cross.png" id="29_0whsi"]
+[ext_resource type="Texture2D" uid="uid://b0uknft8jgbef" path="res://images/music.png" id="30_ym7jc"]
+[ext_resource type="Script" path="res://scripts/Music.gd" id="31_l15pi"]
+[ext_resource type="Script" path="res://scripts/AudioManager.gd" id="32_8q7c5"]
+[ext_resource type="Shader" path="res://scenes/grayscale.gdshader" id="33_m71ts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4du3"]
+shader = ExtResource("33_m71ts")
+
+[sub_resource type="Animation" id="Animation_yluas"]
+resource_name = "white_flask_to_flasks"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16.5, -19), Vector2(165, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_45473"]
+_data = {
+"white_flask_to_flasks": SubResource("Animation_yluas")
+}
+
+[node name="Game" type="Control"]
+material = SubResource("ShaderMaterial_r4du3")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = -671.0
+offset_bottom = -378.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="GUI" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+script = ExtResource("1_1l38x")
+
+[node name="StoreName" type="TextureRect" parent="GUI"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 6.0
+offset_right = 306.0
+offset_bottom = 38.0
+texture = ExtResource("2_720xv")
+
+[node name="Reset" type="TextureButton" parent="GUI"]
+layout_mode = 0
+offset_left = 157.75
+offset_top = 152.0
+offset_right = 189.75
+offset_bottom = 184.0
+texture_normal = ExtResource("3_hcxq6")
+
+[node name="Sell" type="TextureButton" parent="GUI"]
+modulate = Color(0.435192, 0.435192, 0.435192, 1)
+layout_mode = 0
+offset_left = 295.75
+offset_top = 150.0
+offset_right = 327.75
+offset_bottom = 182.0
+disabled = true
+texture_normal = ExtResource("4_k1h3m")
+script = ExtResource("5_tvdei")
+
+[node name="Save" type="TextureButton" parent="GUI"]
+visible = false
+layout_mode = 0
+offset_left = 258.0
+offset_top = 170.0
+offset_right = 290.0
+offset_bottom = 202.0
+rotation = 1.5708
+texture_normal = ExtResource("4_k1h3m")
+
+[node name="Cauldron" type="Sprite2D" parent="GUI"]
+position = Vector2(240, 120)
+scale = Vector2(4, 4)
+script = ExtResource("6_o7k6d")
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Color" type="Sprite2D" parent="GUI/Cauldron"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("7_3ve2d")
+
+[node name="EmptyCauldron" type="Sprite2D" parent="GUI/Cauldron"]
+texture = ExtResource("8_jgpot")
+
+[node name="Target" type="Sprite2D" parent="GUI"]
+visible = false
+position = Vector2(474, 4)
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("9_1oygl")
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Flasks" type="HBoxContainer" parent="GUI"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -46.0
+offset_right = 16.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+script = ExtResource("10_ye7st")
+
+[node name="Gold" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 238.0
+offset_right = 448.0
+offset_bottom = 261.0
+text = "0"
+horizontal_alignment = 2
+script = ExtResource("11_g7n71")
+
+[node name="GoldIcon" type="TextureRect" parent="GUI/Gold"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -6.0
+offset_right = 104.0
+offset_bottom = 26.0
+texture = ExtResource("12_fd20f")
+
+[node name="Customer" type="Sprite2D" parent="GUI"]
+
+[node name="Background" type="TextureRect" parent="GUI/Customer"]
+offset_left = 327.75
+offset_top = 22.0
+offset_right = 547.75
+offset_bottom = 270.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_f0jnw")
+
+[node name="CustomerText" type="RichTextLabel" parent="GUI/Customer"]
+offset_left = 340.0
+offset_top = 44.0
+offset_right = 592.0
+offset_bottom = 308.0
+scale = Vector2(0.5, 0.5)
+
+[node name="NewCustomer" type="Button" parent="GUI/Customer"]
+offset_left = 375.75
+offset_top = 168.0
+offset_right = 498.75
+offset_bottom = 199.0
+scale = Vector2(0.5, 0.5)
+text = "New Customer"
+
+[node name="Label" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 337.75
+offset_top = 28.0
+offset_right = 480.75
+offset_bottom = 51.0
+scale = Vector2(0.5, 0.5)
+text = "Customer Request"
+
+[node name="TextureRect" type="TextureRect" parent="GUI"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 160.0
+
+[node name="Book" type="Sprite2D" parent="GUI"]
+position = Vector2(100, 100)
+
+[node name="Unlocked" type="Sprite2D" parent="GUI/Book"]
+visible = false
+self_modulate = Color(0.184314, 0.184314, 0.184314, 1)
+position = Vector2(-42.25, 22)
+texture = ExtResource("14_vleq3")
+
+[node name="White" type="TextureButton" parent="GUI/Book/Unlocked"]
+offset_left = -16.5
+offset_top = -19.0
+offset_right = 15.5
+offset_bottom = 13.0008
+texture_normal = ExtResource("15_ct6p5")
+flip_h = true
+script = ExtResource("16_jvudm")
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Fluid" type="TextureRect" parent="GUI/Book/Unlocked/White"]
+layout_mode = 0
+offset_left = 0.5
+offset_right = 32.5
+offset_bottom = 32.0
+texture = ExtResource("17_8hkgk")
+
+[node name="WhiteFlaskToFlasks" type="AnimationPlayer" parent="GUI/Book/Unlocked/White"]
+libraries = {
+"": SubResource("AnimationLibrary_45473")
+}
+
+[node name="Locked" type="Sprite2D" parent="GUI/Book"]
+position = Vector2(98.5, 100)
+
+[node name="Alchemy-book" type="Sprite2D" parent="GUI/Book/Locked"]
+modulate = Color(0.18359, 0.18359, 0.18359, 1)
+position = Vector2(-140.5, -78.5)
+texture = ExtResource("18_6mcjd")
+
+[node name="Lock" type="TextureButton" parent="GUI/Book/Locked"]
+offset_left = -156.5
+offset_top = -100.5
+offset_right = -124.5
+offset_bottom = -68.5
+texture_normal = ExtResource("19_2ddop")
+script = ExtResource("20_snsi5")
+
+[node name="Gold" type="Label" parent="GUI/Book/Locked"]
+offset_left = -174.5
+offset_top = -66.5
+offset_right = -100.5
+offset_bottom = -43.5
+scale = Vector2(0.5, 0.5)
+text = "500
+"
+horizontal_alignment = 2
+
+[node name="GoldIcon" type="TextureRect" parent="GUI/Book/Locked/Gold"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -6.0
+offset_right = 104.0
+offset_bottom = 26.0
+texture = ExtResource("12_fd20f")
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Start" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -56.0
+offset_right = 50.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"
+script = ExtResource("21_vr41h")
+
+[node name="Logo" type="Sprite2D" parent="Menu"]
+position = Vector2(240, 100)
+scale = Vector2(2, 2)
+texture = ExtResource("22_0aadh")
+script = ExtResource("23_re6bu")
+
+[node name="Target2" type="Sprite2D" parent="Menu"]
+position = Vector2(398, 160)
+texture = ExtResource("15_ct6p5")
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Fluid" type="TextureRect" parent="Menu/Target2"]
+modulate = Color(0, 1, 0, 1)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("17_8hkgk")
+
+[node name="Target3" type="Sprite2D" parent="Menu"]
+position = Vector2(102, 176)
+texture = ExtResource("15_ct6p5")
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Fluid" type="TextureRect" parent="Menu/Target3"]
+modulate = Color(1, 0, 0, 1)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("17_8hkgk")
+
+[node name="Target4" type="Sprite2D" parent="Menu"]
+position = Vector2(376, 174)
+texture = ExtResource("15_ct6p5")
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Fluid" type="TextureRect" parent="Menu/Target4"]
+modulate = Color(1, 0.447059, 0, 1)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("17_8hkgk")
+
+[node name="Target5" type="Sprite2D" parent="Menu"]
+position = Vector2(76, 168)
+texture = ExtResource("15_ct6p5")
+flip_h = true
+metadata/amount_red = 0
+metadata/amount_green = 0
+metadata/amount_blue = 0
+
+[node name="Fluid" type="TextureRect" parent="Menu/Target5"]
+modulate = Color(0, 0, 1, 1)
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 17.0
+offset_bottom = 16.0
+texture = ExtResource("17_8hkgk")
+
+[node name="Lore" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Parchment" type="TextureRect" parent="Lore"]
+modulate = Color(0.961493, 0.874315, 0.674698, 1)
+layout_mode = 0
+offset_left = 138.0
+offset_top = 8.0
+offset_right = 342.0
+offset_bottom = 256.0
+texture = ExtResource("13_f0jnw")
+
+[node name="LoreText" type="RichTextLabel" parent="Lore"]
+modulate = Color(0.0687983, 0.0687983, 0.0687983, 1)
+layout_mode = 0
+offset_left = 163.75
+offset_top = 46.0
+offset_right = 515.75
+offset_bottom = 486.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/normal_font_size = 15
+text = "In an age of mystical arts and ancient alchemy there was a student from the esteemed Academy of Alchemy, named  Ben Olivander. Known for his skill and passion for brewing colorful potions, he did struggle with true magical effects causing him to dropout from the Academy. While making color potions for friends he discovered a more potent effect, a secret effect that could transform his fortunes:  the \"Placebo Effect\". Realizing that matching the exact hue desired by customers could trigger the placebo's power, Ben envisioned a thriving potion shop. By creating vibrant elixirs with the illusion of placebo, turning his humble skill into a prosperous enterprise. Now, all that remained was to think of a suited shop name ... "
+fit_content = true
+autowrap_mode = 2
+
+[node name="Continue" type="Button" parent="Lore"]
+layout_mode = 0
+offset_left = 219.75
+offset_top = 230.0
+offset_right = 351.75
+offset_bottom = 261.0
+scale = Vector2(0.5, 0.5)
+text = "Open Shop"
+script = ExtResource("24_8ykun")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_gchpg")
+volume_db = -16.984
+autoplay = true
+script = ExtResource("26_nftbw")
+
+[node name="Settings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sound" type="TextureButton" parent="Settings"]
+layout_mode = 0
+offset_left = -0.25
+offset_right = 31.75
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_2u5ai")
+script = ExtResource("28_0w47m")
+
+[node name="SoundCross" type="TextureRect" parent="Settings/Sound"]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("29_0whsi")
+
+[node name="Music" type="TextureButton" parent="Settings"]
+layout_mode = 0
+offset_left = 15.75
+offset_right = 47.75
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("30_ym7jc")
+script = ExtResource("31_l15pi")
+
+[node name="SoundCross" type="TextureRect" parent="Settings/Music"]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("29_0whsi")
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("32_8q7c5")
+
+[connection signal="pressed" from="GUI/Customer/NewCustomer" to="GUI" method="_on_new_customer_pressed"]
+[connection signal="animation_finished" from="GUI/Book/Unlocked/White/WhiteFlaskToFlasks" to="GUI/Book/Unlocked/White" method="_on_white_flask_to_flasks_animation_finished"]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="_on_finished"]
+[connection signal="ready" from="BackgroundMusic" to="GUI" method="_on_background_music_ready"]
+[connection signal="pressed" from="Settings/Sound" to="Settings/Sound" method="_on_pressed"]
+[connection signal="pressed" from="Settings/Music" to="Settings/Music" method="_on_pressed"]
