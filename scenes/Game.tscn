@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cp22wb0rsg6l6"]
+[gd_scene load_steps=35 format=3 uid="uid://cp22wb0rsg6l6"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_1l38x"]
 [ext_resource type="Texture2D" uid="uid://dv6cn8vi75cd6" path="res://images/store-name.png" id="2_720xv"]
@@ -32,10 +32,6 @@
 [ext_resource type="Texture2D" uid="uid://b0uknft8jgbef" path="res://images/music.png" id="30_ym7jc"]
 [ext_resource type="Script" path="res://scripts/Music.gd" id="31_l15pi"]
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="32_8q7c5"]
-[ext_resource type="Shader" path="res://scenes/grayscale.gdshader" id="33_m71ts"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4du3"]
-shader = ExtResource("33_m71ts")
 
 [sub_resource type="Animation" id="Animation_yluas"]
 resource_name = "white_flask_to_flasks"
@@ -59,7 +55,6 @@ _data = {
 }
 
 [node name="Game" type="Control"]
-material = SubResource("ShaderMaterial_r4du3")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,16 +99,6 @@ offset_bottom = 182.0
 disabled = true
 texture_normal = ExtResource("4_k1h3m")
 script = ExtResource("5_tvdei")
-
-[node name="Save" type="TextureButton" parent="GUI"]
-visible = false
-layout_mode = 0
-offset_left = 258.0
-offset_top = 170.0
-offset_right = 290.0
-offset_bottom = 202.0
-rotation = 1.5708
-texture_normal = ExtResource("4_k1h3m")
 
 [node name="Cauldron" type="Sprite2D" parent="GUI"]
 position = Vector2(240, 120)

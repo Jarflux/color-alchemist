@@ -2,10 +2,8 @@ extends Control
 
 class_name Game
 
-var level = 1
 var target_color
-
-var target
+var debug_target
 var flasks
 var cauldron
 var customer
@@ -15,12 +13,11 @@ var customerRequestActive = false
 
 func _ready():
 	flasks = $Flasks
-	target = $Target
+	debug_target = $Target
 	cauldron = $Cauldron
 	customer = $Customer/CustomerText
 	gold = $Gold
 	
-	$Save.pressed.connect(self._save_color)
 	$Reset.pressed.connect(self._reset_cauldron)
 	$Sell.pressed.connect(self._sell_flask)
 
@@ -60,13 +57,9 @@ func _on_new_customer_pressed():
 		var temp = COLORS.filter(func(color): if not color['code'].contains("W"): return color)
 		target_color_index = randi_range(0,temp.size()-1)
 		target_color = temp[target_color_index]
-	target.modulate = target_color["color"]
+	debug_target.modulate = target_color["color"]
 	customer.clear()
 	customer.append_text("[color=black]" + target_color["customerRequests"][randi_range(0,1)] + "[/color]")
-
-func _save_color():
-	if cauldron.getColor()!=null:
-		flasks.add_flask(cauldron.getColor())
 	
 func _reset_cauldron():	
 	cauldron.reset()
